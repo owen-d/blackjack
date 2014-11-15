@@ -6,7 +6,7 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
     if (@get 'playerHand').bestScore() == 21
-      alert 'Blackjack!'
+      console.log 'Blackjack!'
     @get 'playerHand'
           .on 'stand', (-> @get('dealerHand').AI(); undefined), @
     @get 'playerHand'
@@ -17,12 +17,12 @@ class window.App extends Backbone.Model
 
   checkWin: ->
     if @get('playerHand').bestScore() > 21
-      alert 'you lose'
+      console.log 'you lose'
     else if @get('dealerHand').bestScore() > 21
-      alert 'you win'
+      console.log 'you win'
     else if @get('playerHand').bestScore() == @get('dealerHand').bestScore()
-     alert 'tie!'
+     console.log 'tie!'
     else if @get('playerHand').bestScore() > @get('dealerHand').bestScore()
-      alert 'you win'
+      console.log 'you win'
     else
-      alert 'you lose'
+      console.log 'you lose'
