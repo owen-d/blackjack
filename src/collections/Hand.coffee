@@ -2,8 +2,6 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-    if !@isDealer && @scores()[1] == 21
-      alert 'Blackjack!'
 
   isBust: ->
     @scores()[0] > 21
@@ -15,10 +13,9 @@ class window.Hand extends Backbone.Collection
   hit: ->
     poppedItem = @deck.pop()
     @add(poppedItem)
-    if @isBust()
+    if @isBust() or @bestScore() == 21
       @end()
-    else if @bestScore() == 21
-      @stand()
+
     poppedItem
 
   end: ->

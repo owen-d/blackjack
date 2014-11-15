@@ -5,6 +5,8 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
+    if (@get 'playerHand').bestScore() == 21
+      alert 'Blackjack!'
     @get 'playerHand'
           .on 'stand', (-> @get('dealerHand').AI(); undefined), @
     @get 'playerHand'
