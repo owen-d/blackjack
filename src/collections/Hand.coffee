@@ -25,6 +25,7 @@ class window.Hand extends Backbone.Collection
    @trigger('end', @)
 
   AI: ->
+    @models[0].flip()
     while @scores()[0] < 17
       @hit()
     @end()
