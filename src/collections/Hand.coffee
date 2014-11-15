@@ -3,13 +3,24 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
 
+  isBust: ->
+    @scores()[0] > 21
+
+
   stand: ->
-    @.trigger('stand', @)
+    @trigger('stand', @)
 
   hit: ->
     poppedItem = @deck.pop()
     @add(poppedItem)
+    if @isBust()
+      alert 'you lost, nerd'
     poppedItem
+
+  AI: ->
+    while @scores()[0] < 17
+      @hit()
+    undefined
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
